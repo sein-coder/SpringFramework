@@ -31,8 +31,11 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/boardList">게시판</a></li>
+						<li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/board/boardList">게시판</a></li>
+						<li class="nav-item">
+							<a class="nav-link" href="${pageContext.request.contextPath}/demo/demo.do">Demo</a>
+						</li>
 					</ul>
 				</div>
 			</nav>
