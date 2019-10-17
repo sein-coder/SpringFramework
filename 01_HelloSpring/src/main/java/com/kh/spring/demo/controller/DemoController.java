@@ -66,14 +66,14 @@ public class DemoController {
 //	public String demo2( @RequestParam(value="devName") String devName, @RequestParam(value="devAge", required=false, defaultValue="19") int devAge, @RequestParam String devEmail,
 //			@RequestParam String devGender, @RequestParam(value="devLang", required=false) String[] devLang, HttpServletRequest req) {
 	// 아래 방식은 @RequestParam을 생략하고 선언하는 방식인데, 무조건 input태그의 name값과 변수명이 같아야하고, 무조건 required=true이다!
-	public String demo2(String devName, int devAge, String devEmail, String devGender, String[] devLang, HttpServletRequest req) {
+	public String demo2(int devNo, String devName, int devAge, String devEmail, String devGender, String[] devLang, HttpServletRequest req) {
 		System.out.println(devName);
 		System.out.println(devAge);
 		System.out.println(devEmail);
 		System.out.println(devGender);
 		System.out.println(devLang);
 		
-		req.setAttribute("dev", new Dev(devName,devAge,devEmail,devGender,devLang));
+		req.setAttribute("dev", new Dev(devNo, devName,devAge,devEmail,devGender,devLang));
 		
 		return "demo/demoView";
 		
@@ -108,6 +108,25 @@ public class DemoController {
 		//Model은 request객체처럼 데이터를 보관하는 객체
 		model.addAttribute("list",list);
 		return "demo/demoList";
+	}
+	
+	@RequestMapping("/demo/demoUpdate.do")
+	public String demoUpdate(int devNo, Model model) {
+		Dev dev = service.selectDev(devNo);
+		model.addAttribute(dev);
+		return "demo/demoUpdate";
+	}
+	
+	@RequestMapping("/demo/updateDemoEnd.do")
+	public String demoUpdate(Dev dev) {
+		int result = service.updateDemo(dev);
+		return "redirect:/index.jsp";
+	}
+	
+	@RequestMapping("/demo/demoDelete.do")
+	public String demoDelote(int devNo) {
+		int result = service.deleteDemo(devNo);
+		return "redirect:/index.jsp";
 	}
 	
 }

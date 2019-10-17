@@ -14,11 +14,13 @@ import lombok.NoArgsConstructor;
 // @AllArgsConstructor //모든 변수를 가지는 생성자를 생성
 // @EqualsAndHashCode //eqauls()와 hash() 오버라이딩 생성
 // @ToString //toString() 생성
+//@Data 모든 내용을 포함하는 vo객체 생성
 @AllArgsConstructor
 @NoArgsConstructor
-@Data //모든 내용을 포함하는 vo객체 생성
+@Data
 public class Dev {
 	
+	private int devNo;
 	private String devName;
 	private int devAge;
 	private String devEmail;

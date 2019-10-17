@@ -26,6 +26,20 @@ public class DemoServiceImpl implements DemoService {
 	public List<Dev> selectDevList() {
 		return dao.selectDevList(session);
 	}
+	@Override
+	public int deleteDemo(int devNo) {
+		return dao.deleteDemo(session, devNo);
+	}
+	@Override
+	public Dev selectDev(int devNo) {
+		// TODO Auto-generated method stub
+		return dao.selectDev(session, devNo);
+	}
+	@Override
+	public int updateDemo(Dev dev) {
+		// TODO Auto-generated method stub
+		return dao.updateDev(session,dev);
+	}
 	
 	
 	

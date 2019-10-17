@@ -32,12 +32,10 @@
 					</c:forEach>
 				</td>
 				<td>
-					<button type="button" class="btn btn-outline-light"
-					onclick="">수정</button>
+					<button type="button" class="btn btn-outline-light" onclick="location.href='${path}/demo/demoUpdate.do?devNo=${l.devNo}'">수정</button>
 				</td>
 				<td>
-					<button type="button" class="btn btn-outline-light"
-					onclick="">삭제</button>
+					<button type="button" class="btn btn-outline-light" onclick="location.href='${path}/demo/demoDelete.do?devNo=${l.devNo}'">삭제</button>
 				</td>
 			</tr>
 		</c:forEach>
