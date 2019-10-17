@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="dev">
+	<!-- 타입핸들러를 등록하기 위해서는 TypeHandler객체를 구현(implements) -->
 	<insert id="insertDemo" parameterType="dev" >
 		insert into dev values(seq_dev_no.nextval, #{devName}, #{devAge}, #{devEmail}, #{devGender}, 
-			<foreach collection="devLang" item="l" open="'" separator="," close="'">
+			<!-- <foreach collection="devLang" item="l" open="'" separator="," close="'">
 				${l}
-			</foreach>
-		)
+			</foreach> -->
+			#{devLang, typeHandler=strArray} )
 		<!-- #{ } 은 ''을 자동으로 붙여서 리터럴 값으로 만든다. -->
 	</insert>
+	
+	<select id="selectDevList" resultMap="devMap"> <!-- 반환형은 단일값에 대한 반환형이다. -->
+		select * from dev
+	</select>
+	<!-- devLang은 String[] 이기 때문에 별도의 typeHandler처리가 필요하다.
+	나머지는 알아서 맵핑해줌 -->
+	<resultMap type="dev" id="devMap">
+		<result column="devLang" property="devLang" typeHandler="strArray" />
+	</resultMap>
 </mapper>

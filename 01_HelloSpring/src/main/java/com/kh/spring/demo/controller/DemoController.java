@@ -1,5 +1,6 @@
 package com.kh.spring.demo.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -99,6 +100,14 @@ public class DemoController {
 		
 		//redirect하기 : url창이 재요청됨, dispatcher는 servlet부터
 		return "redirect:/index.jsp";
+	}
+	
+	@RequestMapping("/demo/selectDevList.do")
+	public String selectDevList(Model model) {
+		List<Dev> list = service.selectDevList();
+		//Model은 request객체처럼 데이터를 보관하는 객체
+		model.addAttribute("list",list);
+		return "demo/demoList";
 	}
 	
 }
