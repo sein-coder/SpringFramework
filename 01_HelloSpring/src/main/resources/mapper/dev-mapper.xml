@@ -30,7 +30,9 @@
 	
 	<update id="updateDev" parameterType="dev">
 		update dev set devName = #{devName} ,devAge = #{devAge}, devEmail = #{devEmail}, devGender = #{devGender} 
+		<if test="devLang != null">
 		, devLang = #{devLang, typeHandler=strArray}
+		</if>
 		 where devNo = #{devNo}
 	</update>
 	

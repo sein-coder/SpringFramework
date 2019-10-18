@@ -44,22 +44,31 @@
 							</div>
 						</li>
 					</ul>
+					<c:if test="${empty loginMember }">
 					<button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#loginModal">로그인</button>
 					&nbsp;
 					<button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='${pageContext.request.contextPath}/member/memberEnroll.do'">회원가입</button>
+					</c:if>
+		   			
+		   			<c:if test="${not empty loginMember }">
+		   			<span><a href="#">${sessionScope.loginMember.userName}</a> 님, 안녕하세요</span>
+			        &nbsp;
+			        <button class="btn btn-outline-success my-2 my-sm-0" type="button" 
+			        onclick="location.href='${pageContext.request.contextPath}/member/memberLogout.do'">로그아웃</button>
+					</c:if>
 				</div>
 			</nav>
 		</header>
 		
 		<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  		<div class="modal-dialog" role="document">
-	    		<div class="modal-content">
+	    		<div class="modal-content">	
 	      			<div class="modal-header">
 	        			<h5 class="modal-title" id="exampleModalLabel">로그인</h5>
 	        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          				<span aria-hidden="true">&times;</span>
 	        			</button>
-	      			</div>
+	      			</div>     			
 
           			<form action="${pageContext.request.contextPath}/member/memberLogin.do" method="post">
 	      				<div class="modal-body">

@@ -11,6 +11,7 @@
 		<property name="username" value="spring"/>
 		<property name="password" value="spring"/>
 	</bean>
+	
 	<!-- mybatis에서 이용하는 SessionFactory만들기 -->
 	<!-- mybatis-config envirments 에서 설정했던 것 -->
 	<bean id="sessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -19,6 +20,7 @@
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
 		<!-- mapper는 여러개닌깐 *을 이용해서 모든 것을 표현하고 config는 항상 한개닌깐 정해준다. -->
 	</bean>
+	
 	<!-- 실제로 SqlSession을 생성하는 template객체를 등록 -->
 	<!-- autowired하면 이제 이 sessionFactoryBean을 통해 생성한 SqlSession객체를 생성한다. -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">

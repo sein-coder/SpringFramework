@@ -5,12 +5,15 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.spring.LoggerTest;
 import com.kh.spring.demo.model.service.DemoService;
 import com.kh.spring.demo.model.vo.Dev;
 
@@ -25,11 +28,13 @@ public class DemoController {
 	private DemoService service;
 	//화면 전환용 HandlerMapping
 	
+	private static Logger logger = LoggerFactory.getLogger(LoggerTest.class);
+	
 	//@RequestMapping("주소값,맵핑값")
 	//어노테이션으로 맵핑값을 지정해주고 메소드를 생성해서 붙여준다. 메소드의 기본 반환형은 String
 	@RequestMapping("/demo/demo.do")
 	public String demo() {
-		System.out.println("/demo/demo.do가 호출됨.!");
+		logger.debug("/demo/demo.do가 호출됨.!");
 		return "demo/demo";
 		//==/WEB-INF/views/demo/demo.jsp
 	}
@@ -37,11 +42,11 @@ public class DemoController {
 	//HttpServletRequest로 파라미터 값 받기
 	@RequestMapping("/demo/demo1.do")
 	public String demo1(HttpServletRequest req) {
-		System.out.println(req.getParameter("devName"));
-		System.out.println(req.getParameter("devAge"));
-		System.out.println(req.getParameter("devEmail"));
-		System.out.println(req.getParameter("devGender"));
-		System.out.println(req.getParameter("devLang"));
+		logger.debug(req.getParameter("devName"));
+		logger.debug(req.getParameter("devAge"));
+		logger.debug(req.getParameter("devEmail"));
+		logger.debug(req.getParameter("devGender"));
+		logger.debug(req.getParameter("devLang"));
 		
 		Dev dev = new Dev();
 		dev.setDevName(req.getParameter("devName"));

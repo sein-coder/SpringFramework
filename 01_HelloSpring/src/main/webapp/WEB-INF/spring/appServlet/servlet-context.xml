@@ -26,5 +26,11 @@
 	<context:component-scan base-package="com.kh.spring" />
 	<!-- 설정된 기본패키지를 기준으로 소스를 찾는다. -->
 	
+<!-- 	
+	<beans:bean class="com.kh.spring.member.model.service.MemberServiceImpl"/>
+	Servlet-context.xmlbean등록 끝!!
+	따로 무엇인지 별도의 명시는 할 필요가 없다, 그저 autowired를 할 수 만 있게해주는 기능이기 때문에
+	controller,service,repository등을 명시하는것은 개발자가 알아보기 쉽게 표시하는 것
+-->
 	
 </beans:beans>

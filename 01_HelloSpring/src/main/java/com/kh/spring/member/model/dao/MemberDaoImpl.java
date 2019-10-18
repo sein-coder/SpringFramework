@@ -9,9 +9,17 @@ import com.kh.spring.member.model.vo.Member;
 public class MemberDaoImpl implements MemberDao {
 
 	@Override
-	public int memberEnroll(SqlSessionTemplate session, Member m) {
+	public int inserMember(SqlSessionTemplate session, Member m) {
 		// TODO Auto-generated method stub
-		return session.insert("member.memberEnroll",m);
+		return session.insert("member.inserMember",m);
 	}
+
+	@Override
+	public Member selectMemberOne(SqlSessionTemplate session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.selectMemberOne",m);
+	}
+	
+	
 	
 }

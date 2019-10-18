@@ -108,6 +108,7 @@
 			<artifactId>jstl-api</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
 		<!-- DB설정 디펜던시 등록(라이브러리) -->
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
@@ -142,6 +143,35 @@
 		    <artifactId>lombok</artifactId>
 		    <version>1.18.8</version>
 		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- spring-loaded적용하기 : 자동으로 reload되게 해주는 라이브러리 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/springloaded -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>springloaded</artifactId>
+		    <version>1.2.8.RELEASE</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- 단방향암호화를 위해 spring시큐리티 적용!! -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>${org.springframework-version}</version>
 		</dependency>
 		
 		
