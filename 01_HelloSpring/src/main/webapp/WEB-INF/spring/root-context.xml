@@ -5,12 +5,24 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- DB설정하기 with mybatis -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
 		<property name="username" value="spring"/>
 		<property name="password" value="spring"/>
 	</bean>
+	
+	<!-- log를 출력하기 위한 프록시객체 등록 -->
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="realDataSource"/>
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE"/>
+				<property name="sqlPrefix" value="[SQL]"/>
+			</bean>
+		</property>
+	</bean>
+	
 	
 	<!-- mybatis에서 이용하는 SessionFactory만들기 -->
 	<!-- mybatis-config envirments 에서 설정했던 것 -->

@@ -33,4 +33,18 @@
 	controller,service,repository등을 명시하는것은 개발자가 알아보기 쉽게 표시하는 것
 -->
 	
+	<!-- 인터셉터 등록하기 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/> <!-- /** 은 전체파일을 의미하는 url값이다. -->
+			<exclude-mapping path="/member/*"/> <!-- 해당하는 맵핑값은 제외하고 interceptor를 적용한다 -->
+			<beans:bean class="com.kh.spring.common.interceptor.LoggerInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/demo/*"/>
+			<!-- <mapping path="/member/*"/> 각각에 mapping값마다 여러개를 등록할 수 있다. -->
+			<beans:bean class="com.kh.spring.common.interceptor.Logincheck"/>
+		</interceptor>
+	</interceptors>
+	<!-- dev에서 interceptor를 이용해서 admin으로 로그인했을 때만 수정 삭제가 가능하도록 설정한다. -->
 </beans:beans>
