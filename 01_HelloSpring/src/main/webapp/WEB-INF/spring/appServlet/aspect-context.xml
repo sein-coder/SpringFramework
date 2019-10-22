@@ -6,15 +6,20 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	<!-- 선언적방식으로 AOP적용하기 -->
 	<!-- aspect로 활용할 객체 bean으로 등록 -->
-	<bean id="aspectTest" class="com.kh.spring.common.aspect.AspectTest"/>
-	
+<!-- 	<bean id="aspectTest" class="com.kh.spring.common.aspect.AspectTest"/> -->	
 	<!-- AOP 설정하기 -->
-	<aop:config>
+<!--  	<aop:config>
 		<aop:aspect ref="aspectTest">
-			<aop:pointcut expression="execution(* com.kh.spring.memo..*(..))" id="test"/>
-												<!-- 메모에있는 모든 객체 , 모든 메소드, 모든 파라미터를 의미 -->
+			<aop:pointcut expression="execution(* com.kh.spring.memo.model.dao..insert*(..))" id="test"/>
+												메모에있는 모든 객체 , 모든 메소드, 모든 파라미터를 의미
 			<aop:before method="beforeTest" pointcut-ref="test"/>
+			<aop:after method="afterTest" pointcut-ref="test"/>
+			<aop:around method="aroundTest" pointcut-ref="test"/>
 		</aop:aspect>
-	</aop:config>
+	</aop:config> -->
+	
+	<!-- 어노테이션방식의 AOP등록하기  -->
+	<aop:aspectj-autoproxy/>
+	
 	
 </beans>

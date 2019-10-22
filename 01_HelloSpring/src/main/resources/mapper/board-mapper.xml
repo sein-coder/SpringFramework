@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+
+	<select id="selectBoardList" resultType="board">
+		SELECT A.*, (SELECT COUNT(*) 
+					FROM ATTACHMENT 
+					WHERE BOARDNO = A.BOARDNO) AS ATTACHCOUNT 
+		FROM BOARD A ORDER BY BOARDDATE DESC
+	</select>
+
+	
+	<select id="selectCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD
+	</select>
+
+	<insert id="insertBoard" parameterType="board">
+		INSERT INTO BOARD VALUES(seq_boardno.nextval, #{boardTitle}, #{boardWriter} , #{boardContent}, default, default)
+		<!-- insert한 값에 대해서 결과를 가져오는 방법! order : insert문 실행전에 실행하면 before, 실행후면 after -->
+		<selectKey keyProperty="boardNo" resultType="_int" order="AFTER">
+			SELECT SEQ_BOARDNO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<insert id="insertAttachment" parameterType="attach">
+		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENTNO.NEXTVAL , #{boardNo} , #{originalFileName}
+		, #{renamedFileName} , DEFAULT , DEFAULT , DEFAULT )
+	</insert>
+
+
+</mapper>

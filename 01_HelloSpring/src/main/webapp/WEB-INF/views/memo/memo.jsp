@@ -33,7 +33,7 @@
            <c:if test="${ not empty list }">
            		<c:forEach items="${ list }" var="m" varStatus="i">
 	           		<tr>
-	           			<td><c:out value="${ i.count }"/></td>
+	           			<td><c:out value="${ m.memoNo }"/></td>
 	           			<td><c:out value="${ m.memo }"/></td>
 	           			<td><fmt:formatDate value="${ m.memoDate }" dateStyle="long"/></td>
 	           			<td><c:out value="${ m.password }"/></td>

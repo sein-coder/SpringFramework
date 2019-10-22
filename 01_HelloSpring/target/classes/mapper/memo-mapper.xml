@@ -3,7 +3,7 @@
 <mapper namespace="memo">
 
 	<select id="selectMemoList" resultType="memo">
-		select * from memo
+		select * from memo order by memodate desc
 	</select>
 
 	<insert id="insertMemo" parameterType="memo">
