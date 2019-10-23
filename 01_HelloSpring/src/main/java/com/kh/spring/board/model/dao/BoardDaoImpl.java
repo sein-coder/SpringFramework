@@ -11,6 +11,20 @@ import com.kh.spring.board.model.vo.Board;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
+	
+	
+	
+	@Override
+	public List<Attachment> selectAttach(SqlSessionTemplate session, int boardNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("board.selectAttach",boardNo);
+	}
+
+	@Override
+	public Board selectBoard(SqlSessionTemplate session, int boardNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("board.selectBoard",boardNo);
+	}
 
 	@Override
 	public List<Board> selectBoardList(SqlSessionTemplate session, int cPage, int numPerPage) {

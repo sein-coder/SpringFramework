@@ -11,5 +11,9 @@ public interface BoardService {
 	
 	int selectBoardCount();
 	
-	int insertBoard(Board board, List<Attachment> list);
+	int insertBoard(Board board, List<Attachment> list) throws Exception;
+	
+	Board selectBoard(int boardNo);
+	
+	List<Attachment> selectAttach(int boardNo);
 }

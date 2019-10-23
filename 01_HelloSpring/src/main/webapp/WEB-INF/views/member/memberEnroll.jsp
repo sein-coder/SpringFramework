@@ -9,10 +9,28 @@
 	<jsp:param name="pageTitle" value="회원가입"/>
 </jsp:include>
 
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <section id="content">
 	<div id="enroll-container">
 		<form name="memberEnrollFrm" action="${pageContext.request.contextPath}/member/memberEnrollEnd.do" method="post" onsubmit="return validate();" >
 			<input type="text" class="form-control" placeholder="아이디 (4글자이상)" name="userId" id="userId_" required>
+			<script>
+				$("#userId_").keyup(function(){
+					var value = $(this).val().trim();
+					if(value.length<4){
+						return;
+					}
+					$.ajax({
+						url:"${path}/member/checkId.do",
+						data:{"userId":value},
+						success:function(data){
+							console.log(data);
+						}
+					});
+					
+				})
+			</script>
 			<input type="password" class="form-control" placeholder="비밀번호" name="password" id="password_" required>
 			<input type="password" class="form-control" placeholder="비밀번호확인" id="password2" required>
 			<input type="text" class="form-control" placeholder="이름" name="userName" id="userName" required>

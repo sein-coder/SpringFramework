@@ -27,5 +27,12 @@
 		, #{renamedFileName} , DEFAULT , DEFAULT , DEFAULT )
 	</insert>
 
+	<select id="selectBoard" parameterType="_int" resultType="board">
+		SELECT * FROM BOARD WHERE BOARDNO = #{boardNo}
+	</select>
+
+	<select id="selectAttach" parameterType="_int" resultType="attach">
+		SELECT * FROM ATTACHMENT WHERE BOARDNO = #{boardNo}
+	</select>
 
 </mapper>

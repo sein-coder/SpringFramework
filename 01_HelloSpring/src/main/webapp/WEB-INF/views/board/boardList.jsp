@@ -25,7 +25,7 @@
          	<c:forEach items="${list }" var="b">
          		<tr>
          			<td><c:out value="${ b.boardNo }"/></td>
-         			<td><c:out value="${ b.boardTitle }"/></td>
+         			<td><a href="${path }/board/boardView?boardNo=${b.boardNo}"><c:out value="${ b.boardTitle }"/></a></td>
          			<td><c:out value="${ b.boardWriter }"/></td>
          			<td><c:out value="${ b.boardDate }"/></td>
          			<td><c:out value="${ b.attachCount }"/></td>
