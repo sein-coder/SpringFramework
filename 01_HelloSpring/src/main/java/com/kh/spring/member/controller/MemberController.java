@@ -17,6 +17,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kh.spring.LoggerTest;
+import com.kh.spring.common.encrypt.MyEncrypt;
 import com.kh.spring.member.model.service.MemberService;
 import com.kh.spring.member.model.vo.Member;
 
@@ -30,6 +31,9 @@ public class MemberController {
 	private MemberService service;
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
+	
+	@Autowired
+	private MyEncrypt enc;
 	
 	@RequestMapping("/member/memberEnroll.do")
 	public String memberEnroll() {
@@ -49,7 +53,13 @@ public class MemberController {
 		//비밀번호를 암호화 해 보자!!
 		//매번 암호화할때마다 다르지만 맨 앞의 알고리즘과 구분자를 통해서 알아서 비교도 가능하다!
 		m.setPassword( pwEncoder.encode(m.getPassword()) );
-		
+		try {
+			m.setPhone(enc.encrypt(m.getPhone()));
+			m.setEmail(enc.encrypt(m.getEmail()));
+			m.setAddress(enc.encrypt(m.getAddress()));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		logger.debug(m.getPassword());
 		
 		int result = service.inserMember(m);
@@ -153,6 +163,22 @@ public class MemberController {
 		}
 		res.setContentType("application/json;charset=utf-8");
 		return jsonStr;
+	}
+	
+	@RequestMapping("/member/memberView.do")
+	public String memberView(Member m , Model model) {
+		Member result = service.selectMemberOne(m);
+		try {
+			result.setPhone(enc.decrypt(result.getPhone()));
+			result.setEmail(enc.decrypt(result.getEmail()));
+			result.setAddress(enc.decrypt(result.getAddress()));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("member", result);
+		
+		return "member/memberView";
 	}
 	
 }
