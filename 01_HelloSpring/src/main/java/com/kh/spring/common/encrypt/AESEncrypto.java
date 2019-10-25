@@ -14,9 +14,6 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class AESEncrypto implements MyEncrypt {
 
 	//AES암호화방식으로 하기 위해서는 KEY가 있어야함
